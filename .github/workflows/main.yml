@@ -16,8 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch Docs CLI
-        uses: miojo-dev/Fetch-Docs-CLI@0aa779f3678a2379fb0c1da4a45fc7269bec0290
+      - name: Fetch-Docs-CLI
+        uses: miojo-dev/Fetch-Docs-CLI@v1.0.2-language_fix
+          
 
       - name: Commit e Push
         run: |
