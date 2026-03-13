@@ -1,95 +1,83 @@
 name: 'Fetch-Docs-CLI'
-description: 'Generates a fun decumentation on CLI style'
+description: 'Generates a fun documentation on CLI style'
 author: 'miojo-dev'
 
 branding:
   icon: 'terminal'
   color: 'green'
 
-on:
-  push:
-    branches:
-      - main
-      - master
-  schedule:
-    - cron: "0 0 * * 0"
-  workflow_dispatch:
+runs:
+  using: 'composite'
+  steps:
+    - name: 📥 Repo checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
-permissions:
-  contents: write
+    - name: 🦀 Install Onefetch
+      shell: bash
+      run: |
+        VERSION=$(curl -sI https://github.com/o2sh/onefetch/releases/latest \
+          | grep -i location | sed 's|.*/tag/||' | tr -d '[:space:]')
+        echo "Version detected: $VERSION"
+        curl -sL "https://github.com/o2sh/onefetch/releases/download/${VERSION}/onefetch_amd64.deb" \
+          -o onefetch.deb
+        sudo dpkg -i onefetch.deb
+        onefetch --version
 
-jobs:
-  update-readme:
-    name: Gerar Onefetch e atualizar README
-    runs-on: ubuntu-latest
+    - name: 🧑‍💻 Install ansisvg
+      shell: bash
+      run: |
+        curl -sL "https://github.com/nicowillis/ansisvg/releases/latest/download/ansisvg-linux-amd64" \
+          -o ansisvg
+        chmod +x ansisvg
+        sudo mv ansisvg /usr/local/bin/ansisvg
 
-    steps:
-      - name: 📥 Checkout do repositório
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    - name: 🎨 Generate svg file with onefetch + console2svg
+      shell: bash
+      run: |
+        npm install -g console2svg
+        console2svg -o onefetch.svg -- onefetch -d pending
+        sed -i 's/\(<rect[^>]*\)\/>/\1 rx="12" ry="12"\/>/' onefetch.svg
 
-      - name: 🦀 Instalar Onefetch
-        run: |
-          VERSION=$(curl -sI https://github.com/o2sh/onefetch/releases/latest \
-            | grep -i location | sed 's|.*/tag/||' | tr -d '[:space:]')
-          echo "Versão detectada: $VERSION"
-          curl -sL "https://github.com/o2sh/onefetch/releases/download/${VERSION}/onefetch_amd64.deb" \
-            -o onefetch.deb
-          sudo dpkg -i onefetch.deb
-          onefetch --version
+    - name: 📝 Update README.md
+      shell: python3 {0}
+      run: |
+        import re
+        try:
+            with open("README.md", "r", encoding="utf-8") as f:
+                readme = f.read()
+        except FileNotFoundError:
+            readme = ""
 
-      - name: 🧊 Instalar ansisvg
-        run: |
-          curl -sL "https://github.com/nicowillis/ansisvg/releases/latest/download/ansisvg-linux-amd64" \
-            -o ansisvg
-          chmod +x ansisvg
-          sudo mv ansisvg /usr/local/bin/ansisvg
+        new_block = "<!-- ONEFETCH_START -->\n![Onefetch](./onefetch.svg)\n<!-- ONEFETCH_END -->"
+        pattern = r"<!-- ONEFETCH_START -->.*?<!-- ONEFETCH_END -->"
 
-      - name: 🎨 Gerar SVG com onefetch + console2svg
-        run: |
-          npm install -g console2svg
-          console2svg -o onefetch.svg -- onefetch -d pending
-          # Adiciona bordas arredondadas ao rect de fundo
-          sed -i 's/\(<rect[^>]*\)\/>/\1 rx="12" ry="12"\/>/' onefetch.svg
+        if re.search(pattern, readme, re.DOTALL):
+            updated = re.sub(pattern, new_block, readme, flags=re.DOTALL)
+        else:
+            updated = readme.rstrip() + "\n\n" + new_block + "\n"
 
-      - name: 📝 Atualizar README.md
-        run: |
-          python3 << 'EOF'
-          import re
-          try:
-              with open("README.md", "r", encoding="utf-8") as f:
-                  readme = f.read()
-          except FileNotFoundError:
-              readme = ""
+        with open("README.md", "w", encoding="utf-8") as f:
+            f.write(updated)
+        print("README.md updated!")
 
-          new_block = "<!-- ONEFETCH_START -->\n![Onefetch](./onefetch.svg)\n<!-- ONEFETCH_END -->"
-          pattern = r"<!-- ONEFETCH_START -->.*?<!-- ONEFETCH_END -->"
+    - name: 🔍 Verify Changes
+      id: check_changes
+      shell: bash
+      run: |
+        if git diff --quiet README.md onefetch.svg; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+        fi
 
-          if re.search(pattern, readme, re.DOTALL):
-              updated = re.sub(pattern, new_block, readme, flags=re.DOTALL)
-          else:
-              updated = readme.rstrip() + "\n\n" + new_block + "\n"
-
-          with open("README.md", "w", encoding="utf-8") as f:
-              f.write(updated)
-          print("README.md atualizado!")
-          EOF
-
-      - name: 🔍 Verificar mudanças
-        id: check_changes
-        run: |
-          if git diff --quiet README.md onefetch.svg; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: 💾 Commit e Push
-        if: steps.check_changes.outputs.changed == 'true'
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add README.md onefetch.svg
-          git commit -m "docs: atualiza estatísticas do repo via onefetch [skip ci]"
-          git push
+    - name: 💾 Commit e Push
+      if: steps.check_changes.outputs.changed == 'true'
+      shell: bash
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add README.md onefetch.svg
+        git commit -m "docs: update statistics with Onefetch [skip ci]"
+        git push
