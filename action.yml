@@ -3,8 +3,8 @@ description: 'Generates a fun decumentation on CLI style'
 author: 'miojo-dev'
 
 branding:
-  icon: 'book'
-  color: 'blue'
+  icon: 'terminal'
+  color: 'green'
 
 on:
   push:
