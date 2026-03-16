@@ -36,9 +36,8 @@ runs:
     - name: 🎨 Generate svg file with onefetch + console2svg
       shell: bash
       run: |
-        npm install -g console2svg
-        console2svg -o onefetch.svg -- onefetch -d pending
-        sed -i 's/\(<rect[^>]*\)\/>/\1 rx="12" ry="12"\/>/' onefetch.svg
+          npm install -g console2svg
+          console2svg -o onefetch.svg -- onefetch -d pending
 
     - name: 📝 Update README.md
       shell: python3 {0}
