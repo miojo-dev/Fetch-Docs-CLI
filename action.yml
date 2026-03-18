@@ -23,7 +23,8 @@ runs:
         curl -sL "https://github.com/o2sh/onefetch/releases/download/${VERSION}/onefetch_amd64.deb" \
           -o onefetch.deb
         sudo dpkg -i onefetch.deb
-        onefetch --version
+        onefetch --version \
+        | rm onefetch.deb
 
     - name: 🧑‍💻 Install ansisvg
       shell: bash
