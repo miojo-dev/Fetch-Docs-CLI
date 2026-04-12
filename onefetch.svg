@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="856" height="448" viewBox="0 0 856 448" role="img" aria-label="console2svg output">
 <style>
 .crt {
-  font-family: ui-monospace,"Cascadia Mono","Segoe UI Mono","SFMono-Regular",Menlo,monospace;
+  font-family: ui-monospace,"JetBrains Mono","Cascadia Mono","Segoe UI Mono","Noto Sans Mono","SFMono-Regular",Menlo,Consolas,monospace;
   font-size: 14px;
 }
 text {
@@ -25,7 +25,7 @@ text {
 <text class="crt" x="226.8" y="50" fill="#d4d4d4" textLength="42" lengthAdjust="spacing">tags)</text>
 <text class="crt" x="0" y="68" fill="#FFFFFF" textLength="33.6" lengthAdjust="spacing" style="font-weight:bold;">HEAD</text>
 <text class="crt" x="33.6" y="68" fill="#FEFEFE" textLength="8.4" lengthAdjust="spacing" style="font-weight:bold;">:</text>
-<text class="crt" x="50.4" y="68" fill="#d4d4d4" textLength="58.8" lengthAdjust="spacing">6418e0a</text>
+<text class="crt" x="50.4" y="68" fill="#d4d4d4" textLength="58.8" lengthAdjust="spacing">a85030c</text>
 <text class="crt" x="117.6" y="68" fill="#d4d4d4" textLength="50.4" lengthAdjust="spacing">(main,</text>
 <text class="crt" x="176.4" y="68" fill="#d4d4d4" textLength="100.8" lengthAdjust="spacing">origin/main)</text>
 <text class="crt" x="0" y="86" fill="#FFFFFF" textLength="58.8" lengthAdjust="spacing" style="font-weight:bold;">Version</text>
@@ -33,19 +33,19 @@ text {
 <text class="crt" x="75.6" y="86" fill="#d4d4d4" textLength="25.2" lengthAdjust="spacing">lts</text>
 <text class="crt" x="0" y="104" fill="#FFFFFF" textLength="58.8" lengthAdjust="spacing" style="font-weight:bold;">Created</text>
 <text class="crt" x="58.8" y="104" fill="#FEFEFE" textLength="8.4" lengthAdjust="spacing" style="font-weight:bold;">:</text>
-<text class="crt" x="75.6" y="104" fill="#d4d4d4" textLength="8.4" lengthAdjust="spacing">3</text>
-<text class="crt" x="92.4" y="104" fill="#d4d4d4" textLength="42" lengthAdjust="spacing">weeks</text>
+<text class="crt" x="75.6" y="104" fill="#d4d4d4" textLength="8.4" lengthAdjust="spacing">a</text>
+<text class="crt" x="92.4" y="104" fill="#d4d4d4" textLength="42" lengthAdjust="spacing">month</text>
 <text class="crt" x="142.8" y="104" fill="#d4d4d4" textLength="25.2" lengthAdjust="spacing">ago</text>
 <text class="crt" x="0" y="122" fill="#FFFFFF" textLength="58.8" lengthAdjust="spacing" style="font-weight:bold;">Authors</text>
 <text class="crt" x="58.8" y="122" fill="#FEFEFE" textLength="8.4" lengthAdjust="spacing" style="font-weight:bold;">:</text>
-<text class="crt" x="75.6" y="122" fill="#d4d4d4" textLength="25.2" lengthAdjust="spacing">63%</text>
+<text class="crt" x="75.6" y="122" fill="#d4d4d4" textLength="25.2" lengthAdjust="spacing">61%</text>
 <text class="crt" x="109.2" y="122" fill="#d4d4d4" textLength="33.6" lengthAdjust="spacing">João</text>
 <text class="crt" x="151.2" y="122" fill="#d4d4d4" textLength="42" lengthAdjust="spacing">Vitor</text>
 <text class="crt" x="201.6" y="122" fill="#d4d4d4" textLength="42" lengthAdjust="spacing">Hobus</text>
 <text class="crt" x="252" y="122" fill="#d4d4d4" textLength="16.8" lengthAdjust="spacing">30</text>
-<text class="crt" x="75.6" y="140" fill="#d4d4d4" textLength="25.2" lengthAdjust="spacing">38%</text>
+<text class="crt" x="75.6" y="140" fill="#d4d4d4" textLength="25.2" lengthAdjust="spacing">39%</text>
 <text class="crt" x="109.2" y="140" fill="#d4d4d4" textLength="159.6" lengthAdjust="spacing">github-actions[bot]</text>
-<text class="crt" x="277.2" y="140" fill="#d4d4d4" textLength="16.8" lengthAdjust="spacing">18</text>
+<text class="crt" x="277.2" y="140" fill="#d4d4d4" textLength="16.8" lengthAdjust="spacing">19</text>
 <text class="crt" x="0" y="158" fill="#FFFFFF" textLength="33.6" lengthAdjust="spacing" style="font-weight:bold;">Last</text>
 <text class="crt" x="42" y="158" fill="#FFFFFF" textLength="50.4" lengthAdjust="spacing" style="font-weight:bold;">change</text>
 <text class="crt" x="92.4" y="158" fill="#FEFEFE" textLength="8.4" lengthAdjust="spacing" style="font-weight:bold;">:</text>
@@ -57,9 +57,9 @@ text {
 <text class="crt" x="42" y="176" fill="#d4d4d4" textLength="361.2" lengthAdjust="spacing">https://github.com/miojo-dev/Fetch-Docs-CLI</text>
 <text class="crt" x="0" y="194" fill="#FFFFFF" textLength="58.8" lengthAdjust="spacing" style="font-weight:bold;">Commits</text>
 <text class="crt" x="58.8" y="194" fill="#FEFEFE" textLength="8.4" lengthAdjust="spacing" style="font-weight:bold;">:</text>
-<text class="crt" x="75.6" y="194" fill="#d4d4d4" textLength="16.8" lengthAdjust="spacing">48</text>
+<text class="crt" x="75.6" y="194" fill="#d4d4d4" textLength="16.8" lengthAdjust="spacing">49</text>
 <text class="crt" x="0" y="212" fill="#FFFFFF" textLength="42" lengthAdjust="spacing" style="font-weight:bold;">Churn</text>
-<text class="crt" x="50.4" y="212" fill="#FFFFFF" textLength="33.6" lengthAdjust="spacing" style="font-weight:bold;">(22)</text>
+<text class="crt" x="50.4" y="212" fill="#FFFFFF" textLength="33.6" lengthAdjust="spacing" style="font-weight:bold;">(21)</text>
 <text class="crt" x="84" y="212" fill="#FEFEFE" textLength="8.4" lengthAdjust="spacing" style="font-weight:bold;">:</text>
 <text class="crt" x="100.8" y="212" fill="#d4d4d4" textLength="100.8" lengthAdjust="spacing">onefetch.svg</text>
 <text class="crt" x="210" y="212" fill="#d4d4d4" textLength="16.8" lengthAdjust="spacing">13</text>
